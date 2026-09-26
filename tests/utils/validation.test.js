@@ -12,7 +12,7 @@ describe('Validation utilities', () => {
     });
 
     it('should return error if username is missing or empty', () => {
-      expect(validateUser({ username: '', email: 'a@b.com', password: 'password123' })).toBe('Username is required');
+      expect(validateUser({ username: 'testusername', email: 'a@b.com', password: 'password123' })).toBe('Username is required');
       expect(validateUser({ username: '   ', email: 'a@b.com', password: 'password123' })).toBe('Username is required');
       expect(validateUser({ email: 'a@b.com', password: 'password123' })).toBe('Username is required');
       expect(validateUser({ username: null, email: 'a@b.com', password: 'password123' })).toBe('Username is required');
