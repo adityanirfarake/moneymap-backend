@@ -36,6 +36,7 @@ describe('Server Application & Error Middleware', () => {
       expect(response.status).toBe(200);
       expect(response.body).toEqual({
         status: 'ok',
+        commit: expect.any(String),
         message: 'MoneyMap backend is running',
       });
     });

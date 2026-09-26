@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
+    "lint": "eslint .",
     "test": "jest --runInBand",
     "test:coverage": "jest --runInBand --coverage"
   },
@@ -21,6 +22,7 @@
     "pg": "^8.13.1"
   },
   "devDependencies": {
+    "eslint": "^10.11.0",
     "jest": "^30.5.2",
     "nodemon": "^3.1.9",
     "supertest": "^7.3.0"

@@ -15,8 +15,11 @@ const port = process.env.PORT || 5000;
 app.use(cors({ origin: process.env.FRONTEND_URL || 'http://localhost:5173' }));
 app.use(express.json());
 
+const gitSha = process.env.GIT_SHA || process.env.RENDER_GIT_COMMIT || 'local';
+const commit = gitSha.slice(0, 7);
+
 app.get('/health', (request, response) => {
-  response.json({ status: 'ok', message: 'MoneyMap backend is running' });
+  response.json({ status: 'ok', commit, message: 'MoneyMap backend is running' });
 });
 
 app.use('/api/auth', authRoutes);
