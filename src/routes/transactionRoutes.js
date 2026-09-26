@@ -70,4 +70,9 @@ router.delete('/:id', asyncHandler(async (request, response) => {
   return response.status(204).send();
 }));
 
+router.delete('/', asyncHandler(async (request, response) => {
+  const result = await pool.query('DELETE FROM transactions WHERE user_id = $1 RETURNING id', [request.userId]);
+  return response.json({ message: 'Transaction history cleared', deletedCount: result.rowCount });
+}));
+
 module.exports = router;

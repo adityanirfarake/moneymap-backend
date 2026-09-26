@@ -16,6 +16,10 @@ function publicUser(user) {
   return { id: user.id, username: user.username, email: user.email };
 }
 
+router.get('/register', (request, response) => {
+  response.status(405).json({ message: 'Registration requires a POST request with username, email, and password' });
+});
+
 router.post('/register', asyncHandler(async (request, response) => {
   const { username, email, password } = request.body;
   const validationError = validateUser({ username, email, password });
