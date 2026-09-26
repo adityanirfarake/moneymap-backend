@@ -53,4 +53,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger Render deploy hook
-        run: curl -fsS -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}&ref=${{ github.sha }}"
+        env:
+          DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$DEPLOY_HOOK" ]; then
+            echo "RENDER_DEPLOY_HOOK secret is not configured yet in GitHub Secrets."
+            echo "Skipping deploy step. Add RENDER_DEPLOY_HOOK in Settings -> Secrets -> Actions to enable auto-deploy."
+            exit 0
+          fi
+          curl -fsS -X POST "${DEPLOY_HOOK}&ref=${{ github.sha }}"
