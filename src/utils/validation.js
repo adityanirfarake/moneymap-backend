@@ -2,7 +2,7 @@ const { categoriesByType } = require('./constants');
 
 function validateUser({ username, email, password }) {
   if (!username || !username.trim()) return 'Username is required';
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return 'A valid email is required';
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) return 'A valid email is required';
   if (!password || password.length < 8) return 'Password must be at least 8 characters';
   return null;
 }

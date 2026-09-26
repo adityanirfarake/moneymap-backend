@@ -34,6 +34,10 @@ app.use((error, request, response, next) => {
   response.status(500).json({ message: 'Something went wrong on the server' });
 });
 
-app.listen(port, () => {
-  console.log(`MoneyMap backend running on http://localhost:${port}`);
-});
+if (require.main === module) {
+  app.listen(port, () => {
+    console.log(`MoneyMap backend running on http://localhost:${port}`);
+  });
+}
+
+module.exports = app;
